@@ -47,6 +47,11 @@ app.*.map.json
 # Widget Preview related
 .widget_preview/
 
+# Week 1: yang di-push hanya lib/, my_first_app/, screenshots/*.png|jpeg, README.md
+# (log output dan skrip screenshot tetap ada lokal)
+01-week-1-mobile-development-ecosystem-flutter-refresh/*_output.txt
+01-week-1-mobile-development-ecosystem-flutter-refresh/screenshots/*.py
+
 # Week 2: yang di-push hanya lib/, screenshots/*.jpeg, test/, README.md
 # (selebihnya tetap ada lokal agar flutter analyze/test/build tetap jalan)
 02-week-2-declarative-ui-responsive-design/.gitignore
