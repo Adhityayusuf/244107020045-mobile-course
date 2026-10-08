@@ -21,7 +21,7 @@ Dokumentasi praktikum mingguan mata kuliah Pemrograman Mobile, Jurusan Teknologi
 | --- | --- | --- | --- |
 | 01 | Mobile Development Ecosystem & Flutter Refresh | Selesai | [`01-...`](01-week-1-mobile-development-ecosystem-flutter-refresh) |
 | 02 | Declarative UI & Responsive Design | Selesai | [`02-...`](02-week-2-declarative-ui-responsive-design) |
-| 03 | Navigation & State Management (Riverpod) | Belum mulai | [`03-...`](03-week-3-navigation-state-management) |
+| 03 | Navigation & State Management (Riverpod) | Selesai | [`03-...`](03-week-3-navigation-state-management) |
 | 04 | Networking & REST API | Belum mulai | [`04-...`](04-week-4-networking-rest-api) |
 | 05 | Local Storage & Offline-First | Belum mulai | [`05-...`](05-week-5-local-storage-offline-first) |
 | 06 | Authentication, Security & FCM | Belum mulai | [`06-...`](06-week-6-authentication-security-fcm) |
@@ -57,6 +57,18 @@ Detail: [`01-.../README.md`](01-week-1-mobile-development-ecosystem-flutter-refr
 - Widget test untuk tampilan responsif (4 test lolos).
 
 Detail: [`02-.../README.md`](02-week-2-declarative-ui-responsive-design/README.md)
+
+### Minggu 3 — Navigation & State Management
+
+- Navigasi multi-halaman dengan GoRouter: `/`, `/produk`, `/stats`,
+  dan rute detail dengan path parameter.
+- State management Riverpod: `Notifier` untuk daftar tugas, provider
+  turunan untuk filter (Semua, Aktif, Selesai).
+- Penanganan `AsyncValue` untuk kondisi loading, error (tombol Coba lagi),
+  success, dan empty.
+- Enam test lulus dan `flutter analyze` bersih.
+
+Detail: [`03-.../README.md`](03-week-3-navigation-state-management/README.md)
 
 ## Cara Menjalankan
 
