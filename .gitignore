@@ -71,3 +71,8 @@ app.*.map.json
 !03-week-3-navigation-state-management/week3_todo/README.md
 03-week-3-navigation-state-management/screenshots/*.py
 03-week-3-navigation-state-management/screenshots/*.png
+
+# Week 4: yang di-push hanya README.md, lib/, test/, docs/, screenshots/*.png
+# (project week4_api/ tetap ada lokal agar analyze/test/build tetap jalan)
+04-week-4-networking-rest-api/week4_api/
+04-week-4-networking-rest-api/screenshots/*.py
