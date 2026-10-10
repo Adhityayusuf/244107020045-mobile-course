@@ -23,7 +23,7 @@ Dokumentasi praktikum mingguan mata kuliah Pemrograman Mobile, Jurusan Teknologi
 | 02 | Declarative UI & Responsive Design | Selesai | [`02-...`](02-week-2-declarative-ui-responsive-design) |
 | 03 | Navigation & State Management (Riverpod) | Selesai | [`03-...`](03-week-3-navigation-state-management) |
 | 04 | Networking & REST API | Selesai | [`04-...`](04-week-4-networking-rest-api) |
-| 05 | Local Storage & Offline-First | Belum mulai | [`05-...`](05-week-5-local-storage-offline-first) |
+| 05 | Local Storage & Offline-First | Selesai | [`05-...`](05-week-5-local-storage-offline-first) |
 | 06 | Authentication, Security & FCM | Belum mulai | [`06-...`](06-week-6-authentication-security-fcm) |
 | 07 | Clean Architecture | Belum mulai | [`07-...`](07-week-7-clean-architecture) |
 | 08 | Mid Project Review & Code Review | Belum mulai | [`08-...`](08-week-8-mid-project-review) |
@@ -80,6 +80,17 @@ Detail: [`03-.../README.md`](03-week-3-navigation-state-management/README.md)
 - Pagination infinite scroll 10 item per halaman dengan guard request ganda.
 - Halaman detail `/post/:id` dengan GoRouter dan daftar komentar.
 - `flutter analyze` bersih dan 10 test lulus (unit, provider palsu, widget).
+
+### Minggu 5 — Local Storage & Offline-First
+
+- Preferensi tema + terakhir dibuka via `SharedPreferences` (`PrefsRepository`).
+- CRUD catatan persisten via SQLite (`NoteRepository` + Riverpod).
+- Offline-first: dirty flag + tombol Sync, cache-first read `GET /posts`.
+- Toggle `forceOffline` untuk bukti mode pesawat yang deterministik.
+- Detail `/note/:id` GoRouter dari repository lokal; `flutter analyze` bersih,
+  7 test lulus.
+
+Detail: [`05-.../README.md`](05-week-5-local-storage-offline-first/README.md)
 
 ## Cara Menjalankan
 
