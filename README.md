@@ -5,7 +5,7 @@ Informasi, Politeknik Negeri Malang. Dikerjakan dengan Flutter SDK dan
 bahasa Dart. Tiap folder minggu mandiri: ada kode, test, screenshot bukti,
 dan catatan pengerjaan.
 
-[![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter&logoColor=white)](https://flutter.dev/) [![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?logo=dart&logoColor=white)](https://dart.dev/) [![Progress](https://img.shields.io/badge/progress-minggu_06-blue)](portfolio-summary.md)
+[![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter&logoColor=white)](https://flutter.dev/) [![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?logo=dart&logoColor=white)](https://dart.dev/) [![Progress](https://img.shields.io/badge/progress-minggu_07-blue)](portfolio-summary.md)
 
 ## Profil
 
@@ -24,7 +24,7 @@ dan catatan pengerjaan.
 | 04 | Networking & REST API | Selesai | [`04-...`](04-week-4-networking-rest-api) |
 | 05 | Local Storage & Offline-First | Selesai | [`05-...`](05-week-5-local-storage-offline-first) |
 | 06 | Authentication, Security & FCM | Selesai | [`06-...`](06-week-6-authentication-security-fcm) |
-| 07 | Clean Architecture | Belum mulai | [`07-...`](07-week-7-clean-architecture) |
+| 07 | Clean Architecture | Selesai | [`07-...`](07-week-7-clean-architecture) |
 | 08 | Mid Project Review & Code Review | Belum mulai | [`08-...`](08-week-8-mid-project-review) |
 | 09 | AI-assisted Development / Vibe Coding | Belum mulai | [`09-...`](09-week-9-ai-assisted-development) |
 | 10 | AI Feature Integration | Belum mulai | [`10-...`](10-week-10-ai-feature-integration) |
@@ -79,6 +79,19 @@ Login mock + guard route, token di secure storage, Dio refresh sekali saat
 401, FCM (permission, token lifecycle, topik, handler 3 state + deep link
 `/pengumuman/:id`). 13 test lolos, analyze bersih.
 Selengkapnya: [`06-.../README.md`](06-week-6-authentication-security-fcm/README.md)
+
+### Minggu 7 — Clean Architecture
+
+- Refactor fitur `notes` dari Week 5 menjadi feature-first:
+  `domain` (entity, interface repository, 3 use case) ← `data` (model +
+  impl SQLite) ← `presentation` (wiring DI, halaman).
+- `Failure` + record `({notes, failure})`; exception mentah tidak bocor ke UI.
+- Formatting tanggal diekstrak ke `core/format.dart` (murni, diuji).
+- Anti over-engineering: use case hanya untuk operasi beraturan bisnis
+  (`SyncNotes`, `AddNote`, `GetNotes`), bukan tiap CRUD.
+- Tiga grep sterilitas nol hasil, UI identik sebelum/sesudah, 16 test lulus.
+
+Selengkapnya: [`07-.../README.md`](07-week-7-clean-architecture/README.md)
 
 ## Menjalankan salah satu project
 
