@@ -81,3 +81,8 @@ app.*.map.json
 # (project week5_offline_notes/ tetap ada lokal agar analyze/test/build tetap jalan)
 05-week-5-local-storage-offline-first/week5_offline_notes/
 05-week-5-local-storage-offline-first/screenshots/*.py
+
+# Week 6: yang di-push hanya README.md, lib/, test/, docs/, screenshots/*.png
+# (project campus_notify/ tetap ada lokal agar analyze/test/build tetap jalan)
+06-week-6-authentication-security-fcm/campus_notify/
+06-week-6-authentication-security-fcm/screenshots/*.py
