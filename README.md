@@ -24,7 +24,7 @@ Dokumentasi praktikum mingguan mata kuliah Pemrograman Mobile, Jurusan Teknologi
 | 03 | Navigation & State Management (Riverpod) | Selesai | [`03-...`](03-week-3-navigation-state-management) |
 | 04 | Networking & REST API | Selesai | [`04-...`](04-week-4-networking-rest-api) |
 | 05 | Local Storage & Offline-First | Selesai | [`05-...`](05-week-5-local-storage-offline-first) |
-| 06 | Authentication, Security & FCM | Belum mulai | [`06-...`](06-week-6-authentication-security-fcm) |
+| 06 | Authentication, Security & FCM | Selesai | [`06-...`](06-week-6-authentication-security-fcm) |
 | 07 | Clean Architecture | Belum mulai | [`07-...`](07-week-7-clean-architecture) |
 | 08 | Mid Project Review & Code Review | Belum mulai | [`08-...`](08-week-8-mid-project-review) |
 | 09 | AI-assisted Development / Vibe Coding | Belum mulai | [`09-...`](09-week-9-ai-assisted-development) |
@@ -91,6 +91,16 @@ Detail: [`03-.../README.md`](03-week-3-navigation-state-management/README.md)
   7 test lulus.
 
 Detail: [`05-.../README.md`](05-week-5-local-storage-offline-first/README.md)
+
+### Minggu 6 — Authentication, Security & FCM
+
+- Login mock + guard route GoRouter (`/login`, `/`, `/pengumuman/:id`).
+- Token access/refresh di secure storage; Dio refresh sekali saat 401.
+- FCM: permission, token lifecycle (`getToken`/`onTokenRefresh` → `POST /devices`),
+  topik `pengumuman-kampus`, handler 3 state + deep link.
+- Token UI terpotong (12 karakter); `flutter analyze` bersih, 13 test lulus.
+
+Detail: [`06-.../README.md`](06-week-6-authentication-security-fcm/README.md)
 
 ## Cara Menjalankan
 
