@@ -1,116 +1,75 @@
-# 01 Week 1 Mobile Development Ecosystem & Flutter Refresh
+# Minggu 1 — Ekosistem Mobile & Refresh Flutter
 
-Dokumentasi hasil pengerjaan Praktikum Pemrograman Mobile Minggu ke-1.
-Dokumentasi ini telah berisi: screenshot, penjelasan, dan jawaban
-pertanyaan dari praktikum.
+Praktikum pembuka: menyiapkan environment, mengulang dasar Dart, dan
+membuat aplikasi Flutter pertama (profil mahasiswa).
 
-Nama: M.Adhitya Yusuf Al-Ayyubi (NIM 244107020045, Kelas TI-2H)
+**M.Adhitya Yusuf Al-Ayyubi · NIM 244107020045 · TI-2H**
 
-## Latihan Mandiri
+## Yang saya kerjakan
 
-1. Buat fungsi `hitungLuasPersegiPanjang(double panjang, double lebar)`
-   yang mengembalikan luas.
-2. Buat kelas `Profil` dengan properti `nama`, `nim`, dan `email`
-   (boleh null/empty).
-3. Panggil keduanya dari `main()` dan tangani kondisi email kosong
-   dengan aman (tanpa operator `!`, memakai `?.` dan nilai default).
+1. **Latihan mandiri Dart** — fungsi `hitungLuasPersegiPanjang`, kelas
+   `Profil` (`nama`, `nim`, `email` yang boleh null/empty), dan penanganan
+   email kosong yang aman (pakai `?.` + nilai default, tanpa operator `!`).
+   Kode: [`my_first_app/lib/latihan_mandiri.dart`](my_first_app/lib/latihan_mandiri.dart),
+   dijalankan dengan `dart run lib/latihan_mandiri.dart`.
 
-Kode: [`my_first_app/lib/latihan_mandiri.dart`](my_first_app/lib/latihan_mandiri.dart)
-(dijalankan dengan `dart run lib/latihan_mandiri.dart`).
+   ![Latihan Mandiri](screenshots/LatihanMandiri.png)
 
-![Latihan Mandiri](screenshots/LatihanMandiri.png)
+2. **Praktikum: aplikasi profil** — mengikuti kode codelab, dijalankan di
+   Chrome viewport mobile 390x844.
+   Kode: [`my_first_app/lib/main.dart`](my_first_app/lib/main.dart).
 
-## Praktikum
+   ![Praktikum](screenshots/Praktikum.png)
 
-Aplikasi profil mahasiswa sesuai kode codelab, dijalankan di Chrome
-viewport mobile 390x844. Kode: [`my_first_app/lib/main.dart`](my_first_app/lib/main.dart).
+3. **Mini assignment** — profil mahasiswa + NIM + info tambahan (kelas TI-2H)
+   dengan widget dasar.
 
-![Praktikum](screenshots/Praktikum.png)
+   ![Assignment](screenshots/Tugas.png)
 
-## Checklist Verifikasi
+## Bukti environment
 
-- `flutter doctor` tidak memiliki masalah yang menghambat target Android.
-  (Catatan: 2 issue minor tidak terkait target web/Chrome — lihat Kendala.)
+`flutter doctor` tidak punya masalah yang menghambat target Android
+(ada 2 issue minor yang tidak terkait target web/Chrome — lihat Kendala).
 
-  ![Doctor](screenshots/FlutterDoctor.png)
+![Doctor](screenshots/FlutterDoctor.png)
 
-- `flutter devices` mendeteksi emulator/perangkat fisik.
+`flutter devices` mendeteksi emulator/perangkat fisik:
 
-  ![Devices](screenshots/FlutterDevices.png)
+![Devices](screenshots/FlutterDevices.png)
 
-- Aplikasi berjalan dan UI default telah diganti dengan profil sederhana.
+## Hot reload vs hot restart
 
-  ![Praktikum](screenshots/Praktikum.png)
+**Hot reload** memuat ulang perubahan kode ke aplikasi yang sedang berjalan
+tanpa mengulang dari awal — cepat untuk iterasi UI, state tetap terjaga.
 
-- Dapat menjelaskan perbedaan hot reload dan hot restart.
+**Hot restart** menghentikan dan menjalankan ulang aplikasi dari awal —
+lebih lambat, dipakai saat perubahan besar memengaruhi state, butuh
+inisialisasi ulang, atau ada error fatal.
 
-Penjelasan singkat:
+## Kendala setup
 
-```text
-- Hot reload: memuat ulang perubahan kode ke aplikasi yang sedang berjalan
-  tanpa mengulang dari awal. Cepat untuk iterasi UI.
-- Hot restart: memulai ulang aplikasi sepenuhnya dan memuat ulang seluruh
-  kode. Dipakai bila perubahan butuh inisialisasi ulang.
-```
-
-- Repository berisi source code, README, screenshot, dan riwayat commit.
-
----
-
-### Mini Assignment
-
-Buat aplikasi Profil Mahasiswa berdasarkan praktikum. Tambahkan NIM dan satu
-informasi tambahan (kelas TI-2H) menggunakan widget dasar.
-
-![Assignment](screenshots/Tugas.png)
-
----
-
-### Kendala Setup
-
-- `flutter doctor`: Android licenses belum diterima (`flutter doctor
-  --android-licenses`) dan instalasi Visual Studio Build Tools tidak
-  lengkap. Keduanya tidak menghambat target Chrome/web yang dipakai
-  untuk praktikum ini; Chrome dan Edge terdeteksi di `flutter devices`.
-- Kendala konfigurasi Android Studio agar Flutter dikenali sebagai target
-  Android: diselesaikan dengan memastikan Android SDK, Command-line Tools,
-  dan emulator terpasang via SDK/Device Manager.
-
-## Hot Reload vs Hot Restart
-
-### Hot Reload
-
-Hot reload itu menerapkan perubahan pada kode saat aplikasi sedang berjalan
-tanpa kehilangan state atau keadaan pada aplikasi terakhir Dengan mengubah
-tampilan atau layout secara cepat karena perubahan terlihat dalam waktu
-singkat tanpa restart atau refresh.
-
-### Hot Restart
-
-Hot restart itu menghentikan dan menjalankan ulang aplikasi dari awal
-sehingga prosesnya lebih lambat dibanding hot reload tetapi berguna ketika
-perubahan besar memengaruhi state aplikasi atau ketika kita ingin memastikan
-aplikasi dimulai ulang sepenuhnya atau mungkin saat mengalami error yang fatal.
+- `flutter doctor`: Android licenses belum diterima
+  (`flutter doctor --android-licenses`) dan instalasi Visual Studio Build
+  Tools tidak lengkap. Keduanya tidak menghambat target Chrome/web yang
+  dipakai di sini; Chrome dan Edge terdeteksi di `flutter devices`.
+- Android Studio sempat tidak mengenali Flutter sebagai target Android;
+  selesai setelah memastikan Android SDK, Command-line Tools, dan emulator
+  terpasang via SDK/Device Manager.
 
 ## Refleksi
 
-### 1. Kapan native lebih tepat dipilih daripada cross-platform?
+**Kapan native lebih tepat daripada cross-platform?**
+Native lebih tepat ketika aplikasi menuntut performa tinggi atau optimasi
+khusus pada perangkat tertentu, karena cross-platform kurang optimal di
+situ — walau cross-platform menang saat harus merilis ke banyak platform
+tanpa menulis banyak bahasa native.
 
-Native lebih tepat dipilih ketika membutuhkan aplikasi yang menuntut performa
-tinggi atau optimasi yang sangat optimal pada perangkat tertentu karena
-cross-platform kurang bisa menangani itu walaupun bisa menangani membuat
-banyak aplikasi tanpa perlu ngoding di berbagai bahasa native.
+**Bagaimana state berhubungan dengan widget tree dan UI deklaratif?**
+State menentukan data yang sedang dipakai. Saat state berubah, widget tree
+dibangun ulang secara deklaratif sehingga tampilan menyesuaikan data terbaru
+tanpa mengubah UI satu per satu.
 
-### 2. Bagaimana perubahan state berhubungan dengan widget tree dan UI deklaratif?
-
-Di Flutter state itu menentukan data yang sedang digunakan. Jadi ketika state
-berubah widget tree akan dibangun ulang secara deklaratif dan tanpa mengubah
-UI satu satu sehingga tampilan UI menyesuaikan dengan data terbaru tanpa perlu
-mengubah tampilan secara langsung.
-
-### 3. Mengapa commit kecil dengan pesan jelas bermanfaat bagi pekerjaan tim dan portfolio?
-
-Karena commitan kecil bisa membantu tim untuk melihat perubahan secara spesifik
-sehingga dapat meminimalkan konflik dan mempermudah koordinasinya. Klo untuk
-portfolio commitan yang rapi dan jelas dapat menunjukkan proses belajar dan
-kualitas yang kita kerjakan berasa lebih profesional.
+**Mengapa commit kecil berpesan jelas bermanfaat?**
+Commit kecil memudahkan tim melihat perubahan spesifik, meminimalkan konflik,
+dan mempermudah koordinasi. Untuk portfolio, riwayat yang rapi menunjukkan
+proses belajar dan kerja yang profesional.

@@ -1,50 +1,29 @@
-# 05 Week 5: Local Storage & Offline First
+# Minggu 5 — Penyimpanan Lokal & Offline-First
 
-Tugas minggu ke-5 mata kuliah Pemrograman Mobile (JTI Polinema). Proyek ini
-menyimpan preferensi dengan `SharedPreferences` dan catatan dengan SQLite
-(`sqflite`) melalui repository lokal + Riverpod, lalu menerapkan pola
-**offline-first**: cache-first read, dirty flag, dan antrean sinkronisasi.
+Preferensi di `SharedPreferences`, catatan di SQLite (`sqflite`) lewat
+repository lokal + Riverpod, dengan pola **offline-first**: cache-first
+read, dirty flag, dan antrean sinkronisasi.
 
-Nama: M.Adhitya Yusuf Al-Ayyubi (NIM 244107020045, Kelas TI-2H)
+**M.Adhitya Yusuf Al-Ayyubi · NIM 244107020045 · TI-2H**
 
-## Tujuan
+## Gambaran aplikasi
 
-- Menjelaskan perbedaan penyimpanan key-value, relasional, dan NoSQL.
-- Menyimpan preferensi sederhana (tema, terakhir dibuka) dengan SharedPreferences.
-- Menerapkan CRUD catatan dengan SQLite (sqflite) melalui repository lokal.
-- Menerapkan pola offline-first: cache-first read, dirty flag, antrean sinkronisasi.
-- Menampilkan state loading, error, empty, dan success untuk data lokal.
-- Menguji repository lokal dengan repository palsu (tanpa database sungguhan).
+`PrefsRepository` + `SharedPreferences` menyimpan tema gelap/terang dan waktu
+terakhir dibuka. `NoteRepository` + Riverpod menyimpan CRUD catatan persisten
+di SQLite, diurutkan `updated_at` terbaru. Tiap perubahan lokal ditandai
+`dirty = 1`; tombol **Sync** menjalankan `syncNotes()` (hitung kotor →
+simulasi upload → `markAllSynced()`), dan badge kembali nol setelah sukses.
+`GET /posts` dibaca cache-first: cache lokal tampil seketika, refresh
+jaringan jalan di background dan hasilnya disimpan ke `cached_posts`. Toggle
+`forceOffline` membuat simulasi offline deterministik. Detail `/note/:id`
+dibaca langsung dari repository lokal. 7 test lulus tanpa SQLite/HTTP
+sungguhan.
 
-## Fitur Utama
+**Stack:** Flutter 3.47 (Dart 3.13) · `flutter_riverpod` ^3 · `riverpod` ^3 ·
+`shared_preferences` ^2 · `sqflite` ^2 + `path` · `dio` ^5 · `go_router` ^18 ·
+`sqflite_common_ffi_web` (demo/screenshot web) · `flutter_test`.
 
-- **Preferensi** (tema gelap/terang + waktu terakhir dibuka) lewat
-  `PrefsRepository` + `SharedPreferences`.
-- **CRUD catatan** persisten via SQLite melalui `NoteRepository` + Riverpod,
-  daftar diurutkan `updated_at` terbaru.
-- **Offline-first**: badge "Belum tersinkron" (dirty flag) dan tombol **Sync**
-  yang menandai catatan bersih hanya setelah "server" menjawab sukses.
-- **Cache-first read** untuk `GET /posts` JSONPlaceholder: cache lokal tampil
-  seketika, refresh jaringan di background, hasilnya disimpan ke tabel
-  `cached_posts`.
-- **Simulasi offline deterministik** lewat toggle `forceOffline` (provider).
-- **Halaman detail catatan** `/note/:id` dengan GoRouter yang membaca langsung
-  dari repository lokal.
-- 7 test lulus (unit test model + provider dengan repository palsu + widget test)
-  tanpa SQLite/HTTP sungguhan.
-
-## Stack Teknologi
-
-- Flutter 3.47 (Dart 3.13)
-- `flutter_riverpod` ^3 + `riverpod` ^3
-- `shared_preferences` ^2
-- `sqflite` ^2 + `path`
-- `dio` ^5
-- `go_router` ^18
-- `sqflite_common_ffi_web` (dukungan web untuk demo/screenshot)
-- `flutter_test` untuk unit dan widget test
-
-## Struktur Folder
+## Isi folder
 
 ```text
 05-week-5-local-storage-offline-first/
@@ -80,11 +59,10 @@ Nama: M.Adhitya Yusuf Al-Ayyubi (NIM 244107020045, Kelas TI-2H)
 └── README.md
 ```
 
-> Kode yang dapat dijalankan ada di subfolder `week5_offline_notes/`
-> (di-ignore oleh Git). Folder `lib/` dan `test/` berisi salinan final untuk
-> dokumentasi portofolio, mengikuti konvensi minggu sebelumnya.
+> Yang bisa dijalankan ada di `week5_offline_notes/` (di-ignore Git).
+> `lib/` dan `test/` adalah salinan final untuk portofolio.
 
-## Alur Data
+## Cara kerja lapisan lokal
 
 ```text
 UI (ConsumerWidget) --watch--> Provider (AsyncValue)
@@ -93,116 +71,91 @@ LocalRepository --sync--> Remote (simulasi) --sukses--> dirty = 0
 Cache: baca lokal dulu, refresh background, simpan
 ```
 
-UI tidak pernah memanggil SQLite/SharedPreferences langsung. Repository mengubah
-exception platform menjadi kegagalan bermakna lewat `friendlyErrorMessage`, dan
-provider mengekspos `AsyncValue` ke UI.
+UI tidak menyentuh SQLite/SharedPreferences langsung. Repository mengubah
+exception platform menjadi kegagalan yang bermakna, provider mengekspos
+`AsyncValue` ke UI.
 
-## 1. Preferensi (SharedPreferences)
+## Preferensi
 
-`PrefsRepository` memusatkan seluruh akses key-value: `getDarkMode`,
-`setDarkMode`, `markOpenedNow`, dan `getLastOpened`. `DarkModeNotifier`
-membungkusnya dalam `AsyncNotifierProvider`.
+`PrefsRepository` memusatkan `getDarkMode`, `setDarkMode`, `markOpenedNow`,
+dan `getLastOpened`; `DarkModeNotifier` membungkusnya dalam
+`AsyncNotifierProvider`.
 
-<table>
-  <tr>
-    <td align="center"><strong>Pengaturan (tema terang)</strong><br><br>
-      <img src="screenshots/06-settings.png" width="220" alt="Pengaturan terang"></td>
-    <td align="center"><strong>Pengaturan (tema gelap)</strong><br><br>
-      <img src="screenshots/07-settings-dark.png" width="220" alt="Pengaturan gelap"></td>
-  </tr>
-</table>
+**Tema terang.**
+![Pengaturan terang](screenshots/06-settings.png)
 
-## 2. CRUD catatan offline (SQLite)
+**Tema gelap.**
+![Pengaturan gelap](screenshots/07-settings-dark.png)
 
-Catatan tersimpan di perangkat sehingga halaman ini tetap berfungsi penuh dalam
-mode pesawat. `NoteTile` menampilkan badge **Belum tersinkron** bila
+## Catatan offline
+
+Catatan tersimpan di perangkat sehingga tetap berfungsi penuh dalam mode
+pesawat. `NoteTile` menampilkan badge **Belum tersinkron** bila
 `dirty == true`.
 
-<table>
-  <tr>
-    <td align="center"><strong>Daftar catatan + badge dirty</strong><br><br>
-      <img src="screenshots/01-notes-list.png" width="220" alt="Daftar catatan"></td>
-    <td align="center"><strong>Detail badge "Belum tersinkron"</strong><br><br>
-      <img src="screenshots/02-dirty-badge.png" width="220" alt="Badge dirty"></td>
-    <td align="center"><strong>Tambah catatan</strong><br><br>
-      <img src="screenshots/03-add-note.png" width="220" alt="Tambah catatan"></td>
-  </tr>
-</table>
+**Daftar + badge dirty.**
+![Daftar catatan](screenshots/01-notes-list.png)
 
-Halaman detail `/note/:id` membaca langsung dari repository lokal, bukan dari
-state halaman list:
+**Detail badge.**
+![Badge dirty](screenshots/02-dirty-badge.png)
 
-<p align="center">
-  <img src="screenshots/08-note-detail.png" width="220" alt="Detail catatan">
-</p>
+**Dialog tambah.**
+![Tambah catatan](screenshots/03-add-note.png)
 
-## 3. Dirty flag + antrean sinkronisasi
+**Detail `/note/:id`** (dibaca dari repository lokal, bukan state list).
+![Detail catatan](screenshots/08-note-detail.png)
 
-Setiap perubahan lokal ditandai `dirty = 1`. Tombol **Sync** memanggil
-`syncNotes()` yang menghitung catatan kotor, menyimulasikan upload, lalu
-memanggil `markAllSynced()`. Badge kembali ke nol setelah sync sukses.
+## Sinkronisasi
 
-<table>
-  <tr>
-    <td align="center"><strong>Sebelum sync (2 dirty)</strong><br><br>
-      <img src="screenshots/01-notes-list.png" width="220" alt="Sebelum sync"></td>
-    <td align="center"><strong>Sesudah sync (0 dirty)</strong><br><br>
-      <img src="screenshots/04-sync-success.png" width="220" alt="Sesudah sync"></td>
-  </tr>
-</table>
+**Sebelum sync (2 dirty).**
+![Sebelum sync](screenshots/01-notes-list.png)
 
-## 4. Bukti mode pesawat
+**Sesudah sync (0 dirty).**
+![Sesudah sync](screenshots/04-sync-success.png)
 
-Catatan tetap tampil, bisa ditambah, dan badge dirty tetap akurat tanpa
-jaringan. Toggle `forceOffline` membuat simulasi deterministik (tidak
-bergantung kondisi Wi-Fi kelas); banner "Mode offline" tampil di atas daftar.
+## Bukti mode pesawat
 
-<p align="center">
-  <img src="screenshots/05-offline-notes.png" width="220" alt="Catatan offline">
-</p>
+Catatan tetap tampil, bisa ditambah, badge tetap akurat tanpa jaringan.
+Toggle `forceOffline` membuat simulasi deterministik; banner "Mode offline"
+tampil di atas daftar.
 
-## 5. Cache-first read untuk data API
+![Catatan offline](screenshots/05-offline-notes.png)
 
-Halaman **Data API** menampilkan cache lokal seketika (tabel `cached_posts`),
-lalu refresh dari `GET /posts` di background dan menyimpan hasilnya. Bila
-refresh gagal, cache tetap tampil dengan penanda error.
+## Cache-first untuk data API
 
-<table>
-  <tr>
-    <td align="center"><strong>Dari cache lokal (offline)</strong><br><br>
-      <img src="screenshots/09-posts-cache.png" width="220" alt="Dari cache"></td>
-    <td align="center"><strong>Dari jaringan (tersimpan ke cache)</strong><br><br>
-      <img src="screenshots/10-posts-network.png" width="220" alt="Dari jaringan"></td>
-    <td align="center"><strong>Refresh gagal, cache tetap tampil</strong><br><br>
-      <img src="screenshots/11-posts-error.png" width="220" alt="Refresh gagal"></td>
-  </tr>
-</table>
+Halaman **Data API** menampilkan cache lokal seketika (`cached_posts`),
+lalu refresh `GET /posts` di background. Bila refresh gagal, cache tetap
+tampil dengan penanda error.
 
-### Aturan konflik
+**Dari cache (offline).**
+![Dari cache](screenshots/09-posts-cache.png)
 
-Dipilih **last-write-wins berdasarkan `updated_at`**. Catatan diurutkan
-`updated_at DESC`, dan saat sinkronisasi catatan dengan `updated_at` terbaru
-dianggap menang. Aturan ini eksplisit agar sinkronisasi dua arah tidak menimpa
-data secara diam-diam.
+**Dari jaringan (tersimpan ke cache).**
+![Dari jaringan](screenshots/10-posts-network.png)
 
-## Refactoring Challenge
+**Refresh gagal, cache tetap tampil.**
+![Refresh gagal](screenshots/11-posts-error.png)
 
-1. **`NoteTile`** diekstrak menjadi widget tersendiri di `lib/widgets/` dengan
-   badge "Belum tersinkron" saat `dirty == true`.
-2. **`sync.dart`** memuat logika cache posts (`PostCacheStore`) dan `syncNotes`
-   agar repository tetap fokus pada CRUD.
-3. **Halaman detail** `/note/:id` dengan GoRouter membaca dari repository lokal
-   (`noteDetailProvider`), bukan dari state halaman list.
+**Aturan konflik saya:** last-write-wins berdasarkan `updated_at`. Daftar
+diurutkan `updated_at DESC`; saat sync, catatan terbaru menang. Eksplisit
+agar sinkronisasi dua arah tidak menimpa data diam-diam.
 
-## Testing
+## Yang saya refactor
+
+- **`NoteTile`** jadi widget tersendiri di `lib/widgets/` dengan badge saat
+  `dirty == true`.
+- **`sync.dart`** menampung cache posts (`PostCacheStore`) dan `syncNotes`
+  agar repository fokus pada CRUD.
+- **Detail `/note/:id`** membaca dari repository lokal
+  (`noteDetailProvider`), bukan state halaman list.
+
+## Bukti uji
 
 ```bash
 cd week5_offline_notes
 flutter analyze
 flutter test
 ```
-
-Hasil:
 
 ```text
 $ flutter analyze
@@ -220,11 +173,9 @@ $ flutter test
 00:01 +7: All tests passed!
 ```
 
-<p align="center">
-  <img src="screenshots/12-analyze-test.png" width="420" alt="flutter analyze dan flutter test">
-</p>
+![flutter analyze dan flutter test](screenshots/12-analyze-test.png)
 
-## Cara Menjalankan
+## Menjalankan
 
 ```bash
 cd week5_offline_notes
@@ -233,47 +184,47 @@ flutter run                 # Android/desktop
 flutter run -d chrome       # Web (butuh sqflite_common_ffi_web)
 ```
 
-Aplikasi membuka **Catatan Offline** (`/`). Ikon cloud membuka halaman Data API
-(`/posts`), ikon gerigi membuka Pengaturan (`/settings`), dan menekan sebuah
-catatan membuka detail (`/note/:id`).
+Aplikasi membuka **Catatan Offline** (`/`). Ikon cloud membuka Data API
+(`/posts`), ikon gerigi membuka Pengaturan (`/settings`), menekan catatan
+membuka detail (`/note/:id`).
 
-## AI Verification Checklist
+## Hasil verifikasi AI saya
 
-| Item | Status | Catatan |
-| :--- | :---: | :--- |
-| AI menempatkan daftar catatan di SharedPreferences? | ✅ Tidak | AI menyarankan sqflite untuk koleksi |
-| Skema mendukung antrean sync (dirty / updated_at)? | ⚠️ Diperbaiki | AI hanya punya `updated_at`; ditambah `dirty` |
-| Klaim "real-time" didukung stream? | ✅ | Reaktivitas via Riverpod, bukan asumsi |
-| Estimasi boilerplate masuk akal? | ✅ | `flutter pub add sqflite path` ringan |
-| Test menguji field hilang + repository palsu? | ✅ | `note_test.dart` + `FakeNoteRepository` |
-| `flutter analyze` dan `flutter test` lolos | ✅ | Bersih, 7 test lulus |
+- Daftar catatan tidak di SharedPreferences — AI pun menyarankan sqflite.
+- Skema mendukung antrean sync — saya tambah kolom `dirty` (AI hanya punya
+  `updated_at`).
+- Klaim "real-time" didukung — reaktivitas via Riverpod, bukan asumsi.
+- Boilerplate masuk akal — `flutter pub add sqflite path` ringan.
+- Test field hilang + repository palsu — `note_test.dart` + `FakeNoteRepository`.
+- `flutter analyze` dan `flutter test` lolos — bersih, 7 test lulus.
 
-## Checklist Verifikasi Mandiri
+## Checklist saya
 
-- [x] UI tidak memanggil SQLite/SharedPreferences langsung; semua lewat
-      repository + provider.
-- [x] Aplikasi penuh berfungsi dalam mode pesawat: baca, tambah, hapus catatan.
-- [x] Badge dirty akurat sebelum/sesudah sync; cache posts tampil tanpa internet.
+- [x] Semua lewat repository + provider, tanpa akses langsung.
+- [x] Fungsi penuh dalam mode pesawat: baca, tambah, hapus.
+- [x] Badge akurat sebelum/sesudah sync; cache tampil tanpa internet.
 - [x] `flutter analyze` tanpa issue dan semua test lulus.
-- [x] Hasil AI diverifikasi dan didokumentasikan pada folder `docs/`.
+- [x] Hasil AI terdokumentasi di `docs/`.
 
 ## Refleksi
 
-1. **Mengapa daftar catatan tidak boleh disimpan di SharedPreferences?**
-   SharedPreferences hanya untuk nilai primitif kecil. Menyimpan koleksi sebagai
-   satu string JSON membuat query, update parsial, dan sinkronisasi rapuh dan
-   lambat, serta tidak ada transaksi.
-2. **Kapan cache-first cukup, kapan butuh network-first?**
-   Cache-first cukup untuk data yang boleh sedikit basi (daftar post, katalog).
-   Network-first dipakai untuk data yang harus akurat saat itu juga, misalnya
-   harga atau saldo.
-3. **Bagaimana dirty flag menjadi antrean sync tanpa memblokir UI?**
-   Perubahan lokal langsung menulis ke SQLite dan menandai `dirty = 1`; UI
-   selesai tanpa menunggu jaringan. Sync berjalan di background dan hanya
-   menandai bersih setelah sukses. Antrean terpisah (tabel outbox) menjadi perlu
-   saat operasi harus dikirim berurutan beserta riwayat (create/update/delete).
-4. **Bagian hasil AI yang diperbaiki?**
-   Menambah kolom `dirty` untuk antrean sync, menambah tabel `cached_posts`
-   untuk cache-first read, dan menambahkan test dengan repository palsu.
+**Mengapa daftar catatan tidak boleh di SharedPreferences?**
+SharedPreferences hanya untuk primitif kecil. Koleksi sebagai satu string
+JSON membuat query, update parsial, dan sinkronisasi rapuh dan lambat —
+tanpa transaksi pula.
 
-Detail lengkap ada di [`docs/ai-challenge.md`](docs/ai-challenge.md).
+**Kapan cache-first cukup, kapan network-first?**
+Cache-first untuk data yang boleh sedikit basi (daftar post, katalog).
+Network-first untuk yang harus akurat saat itu juga (harga, saldo).
+
+**Bagaimana dirty flag jadi antrean tanpa memblokir UI?**
+Perubahan lokal langsung menulis ke SQLite + `dirty = 1`; UI selesai tanpa
+menunggu jaringan. Sync jalan di background dan menandai bersih hanya
+setelah sukses. Tabel outbox terpisah baru perlu saat operasi harus terkirim
+berurutan beserta riwayat create/update/delete.
+
+**Bagian hasil AI yang saya perbaiki?**
+Kolom `dirty` untuk antrean sync, tabel `cached_posts` untuk cache-first,
+dan test repository palsu.
+
+Detail lengkap: [`docs/ai-challenge.md`](docs/ai-challenge.md).

@@ -1,44 +1,11 @@
-# 03 Week 3: Navigation & State Management
+# Minggu 3 — Navigasi GoRouter & State Riverpod
 
-Tugas minggu ke-3 mata kuliah Pemrograman Mobile (JTI Polinema). Proyek ini
-menggabungkan navigasi deklaratif dengan **GoRouter** dan state management
-dengan **Riverpod**, lalu ditutup dengan simulasi data asinkron memakai
-`AsyncValue`.
+Menggabungkan navigasi deklaratif (**GoRouter**) dengan state management
+(**Riverpod**), ditutup simulasi data asinkron lewat `AsyncValue`.
 
-Nama: M.Adhitya Yusuf Al-Ayyubi (NIM 244107020045, Kelas TI-2H)
+**M.Adhitya Yusuf Al-Ayyubi · NIM 244107020045 · TI-2H**
 
-## Tujuan
-
-- Menjelaskan konsep navigasi, route, serta perbedaan Navigator 1.0 dengan
-  GoRouter.
-- Menerapkan navigasi multi-page dengan GoRouter, termasuk path parameter dan
-  passing argument.
-- Menjelaskan alasan state management dan cara kerja Riverpod (`Provider`,
-  `ConsumerWidget`, `Notifier`).
-- Menangani state loading, error, dan success dengan `AsyncValue`.
-- Membangun aplikasi ToDo dengan navigasi dan Riverpod, lalu memverifikasinya
-  dengan unit dan widget test.
-
-## Fitur Utama
-
-- Navigasi multi-halaman dengan GoRouter: `/` (daftar tugas), `/produk`
-  (produk), dan `/stats` (statistik).
-- `NavigationBar` untuk berpindah halaman tanpa kehilangan state.
-- Daftar tugas dengan tambah, tandai selesai, dan hapus (`Notifier`).
-- Filter tugas: Semua, Aktif, Selesai (provider turunan).
-- Halaman produk dengan simulasi pengambilan data asinkron: loading, error
-  (dengan tombol **Coba lagi**), dan success.
-- Halaman statistik dengan simulasi pengambilan data asinkron: loading, error
-  (dengan tombol **Coba lagi**), dan success.
-
-## Stack Teknologi
-
-- Flutter 3.47 (Dart 3.13)
-- `go_router` ^18
-- `flutter_riverpod` ^3
-- `flutter_test` untuk unit dan widget test
-
-## Struktur Folder
+## Peta isi folder
 
 ```text
 03-week-3-navigation-state-management/
@@ -56,96 +23,76 @@ Nama: M.Adhitya Yusuf Al-Ayyubi (NIM 244107020045, Kelas TI-2H)
 └── README.md
 ```
 
-> Kode yang dapat dijalankan ada di subfolder `week3_navigation/` dan
-> `week3_todo/` lokal (tidak di-push, hanya README-nya). Folder `test/`
-> berisi salinan test final `week3_todo/` untuk dokumentasi portofolio.
+> Kode jalan ada di `week3_navigation/` dan `week3_todo/` lokal (tidak
+> di-push, hanya README-nya). Folder `test/` menyalin test final
+> `week3_todo/` untuk dokumentasi.
 
-## Struktur Project
+Tiap project punya README sendiri:
 
-Folder ini punya README keseluruhan (file ini) dan README tiap project:
-
-- `week3_navigation/` - Praktikum 1 (navigasi GoRouter). Struktur: `lib/`
-  (`main.dart`, `pages/home_page.dart`, `pages/detail_page.dart`) dan `test/`.
-  Cara jalan dan detailnya ada di
+- `week3_navigation/` — Praktikum 1 (navigasi GoRouter): `lib/` (`main.dart`,
+  `pages/home_page.dart`, `pages/detail_page.dart`) + `test/`. Detail di
   [`week3_navigation/README.md`](week3_navigation/README.md).
-- `week3_todo/` - Praktikum 2 & 3 + AI Challenge (ToDo + Riverpod). Struktur:
-  `lib/` (`main.dart`, `pages/`, `providers/`, `widgets/`) dan `test/`.
-  Cara jalan dan detailnya ada di
+- `week3_todo/` — Praktikum 2 & 3 + AI Challenge (ToDo + Riverpod): `lib/`
+  (`main.dart`, `pages/`, `providers/`, `widgets/`) + `test/`. Detail di
   [`week3_todo/README.md`](week3_todo/README.md).
 
-Folder `test/` adalah salinan test final `week3_todo/` untuk dokumentasi
-portofolio. `screenshots/` dan `docs/` juga berada di folder ini.
+## Praktikum 1 — Daftar + detail GoRouter
 
-## Praktikum 1 - Navigasi dengan GoRouter
+Project `week3_navigation` menampilkan daftar 10 item. Menekan item membuka
+`/detail/:id` lewat path parameter, dan path detail bisa diakses langsung
+tanpa lewat Home.
 
-Project `week3_navigation` menampilkan daftar 10 item. Menekan sebuah item
-membuka `/detail/:id` lewat path parameter, dan path detail dapat diakses
-langsung tanpa melewati Home.
+**Home.**
+![Home](screenshots/navigation-home.jpeg)
 
-<table>
-  <tr>
-    <td align="center">
-      <strong>Home</strong><br><br>
-      <img src="screenshots/navigation-home.jpeg" width="260" alt="Home">
-    </td>
-    <td align="center">
-      <strong>Detail</strong><br><br>
-      <img src="screenshots/navigation1.jpeg" width="260" alt="Detail">
-    </td>
-  </tr>
-</table>
+**Detail.**
+![Detail](screenshots/navigation1.jpeg)
 
-## Praktikum 2 - ToDo dengan Riverpod
+## Praktikum 2 — ToDo dengan Riverpod
 
-State daftar tugas disimpan pada `TodoListNotifier` dan dibaca UI lewat
-`ref.watch`. Setiap perubahan selalu membuat list baru (immutable), dan
-callback memakai `ref.read(...notifier)`.
+State daftar tugas disimpan di `TodoListNotifier` dan dibaca UI lewat
+`ref.watch`. Tiap perubahan membuat list baru (immutable), dan callback
+memakai `ref.read(...notifier)`.
 
-<table>
-  <tr>
-    <td align="center">
-      <strong>Daftar Tugas</strong><br><br>
-      <img src="screenshots/todo-home.jpeg" width="260" alt="Daftar tugas">
-    </td>
-    <td align="center">
-      <strong>Tambah Tugas</strong><br><br>
-      <img src="screenshots/todo-add.jpeg" width="260" alt="Dialog tambah">
-    </td>
-  </tr>
-</table>
+**Daftar tugas.**
+![Daftar tugas](screenshots/todo-home.jpeg)
 
-## Praktikum 3 - AsyncValue dan AI Challenge
+**Dialog tambah.**
+![Dialog tambah](screenshots/todo-add.jpeg)
+
+Yang bisa dilakukan aplikasi: navigasi `/` (daftar tugas), `/produk`, dan
+`/stats` lewat `NavigationBar` tanpa kehilangan state; tambah, tandai
+selesai, dan hapus tugas; filter Semua/Aktif/Selesai dari provider turunan.
+
+## Praktikum 3 — AsyncValue + AI Challenge
 
 Halaman `StatsPage` memakai `AsyncNotifier` yang mensimulasikan request
-(delay 2 detik, gagal sekitar 30%). Ketiga kondisi ditangani dengan
-`AsyncValue.when`:
+(delay 2 detik, gagal ±30%). Semua kondisi ditangani `AsyncValue.when`:
 
-- **loading**: spinner + label "Memuat statistik..."
-- **error**: pesan gagal + tombol **Coba lagi** (`ref.invalidate`)
-- **success**: panel cincin persentase selesai + `ListView` tiga baris
-  (Total tugas, Selesai, Belum selesai)
-- **empty**: saat belum ada tugas, ditampilkan pesan + tombol menuju tab Tugas
+- **loading** — spinner + label "Memuat statistik..."
+- **error** — pesan gagal + tombol **Coba lagi** (`ref.invalidate`)
+- **success** — panel cincin persentase + `ListView` tiga baris
+  (Total, Selesai, Belum selesai)
+- **empty** — belum ada tugas: pesan + tombol ke tab Tugas
 
-Statistik dihitung dari daftar tugas sebenarnya (total, selesai, belum
-selesai), bukan angka hardcoded, dan dibungkus model `Stats` di
-`providers/stats_provider.dart`. Detail prompt, output awal AI, perbaikan,
-dan hasil test ada di [`docs/ai-challenge.md`](docs/ai-challenge.md).
+Statistik dihitung dari daftar tugas sebenarnya (bukan angka hardcoded)
+lewat model `Stats` di `providers/stats_provider.dart`. Prompt, output awal
+AI, perbaikan, dan hasil test ada di
+[`docs/ai-challenge.md`](docs/ai-challenge.md).
 
-## Refactoring Challenge
+## Yang saya refactor
 
-1. **`TodoTile`** dipisah menjadi widget tersendiri di `lib/widgets/`.
-2. **Logika filter** diekstrak menjadi `filteredTodosProvider`, sebuah
-   `Provider` turunan yang membaca `todoListProvider` dan `todoFilterProvider`.
-3. **Integrasi GoRouter**: `/` untuk daftar tugas, `/produk` untuk produk, dan
-   `/stats` untuk statistik, dengan `NavigationBar` untuk berpindah halaman.
+- **`TodoTile`** jadi widget tersendiri di `lib/widgets/`.
+- **Logika filter** jadi `filteredTodosProvider` — `Provider` turunan yang
+  membaca `todoListProvider` dan `todoFilterProvider`.
+- **Integrasi GoRouter**: `/` daftar tugas, `/produk` produk, `/stats`
+  statistik, dengan `NavigationBar` untuk berpindah.
 
-## Testing
+## Bukti uji
 
 ```bash
 flutter test
 ```
-
-Hasil (`week3_todo/`):
 
 ```text
 00:00 +0: statistik sukses menghitung total, selesai, dan sisa
@@ -157,15 +104,10 @@ Hasil (`week3_todo/`):
 00:01 +6: All tests passed!
 ```
 
-Analisis statis:
+Analisis statis: `flutter analyze` → No issues found.
+(`week3_navigation/`: 2 test lulus, analyze bersih.)
 
-```bash
-flutter analyze   # No issues found!
-```
-
-(`week3_navigation/`: 2 test lulus, `flutter analyze` bersih.)
-
-## Cara Menjalankan
+## Menjalankan
 
 ```bash
 cd week3_todo
@@ -173,53 +115,48 @@ flutter pub get
 flutter run -d chrome
 ```
 
-Aplikasi membuka halaman **Tugas** lebih dulu. Tab **Tugas**, **Produk**, dan
-**Statistik** tersedia lewat `NavigationBar` di bawah.
+Aplikasi membuka tab **Tugas** lebih dulu; tab **Tugas**, **Produk**, dan
+**Statistik** tersedia lewat `NavigationBar` bawah.
 
-## AI Verification Checklist
+## Hasil verifikasi AI saya
 
-| Item | Status | Catatan |
-| :--- | :---: | :--- |
-| State diubah secara immutable | ✅ | `add`/`toggle`/`remove` selalu membuat list baru |
-| `ref.watch` di `build`, `ref.read` di callback | ✅ | Tidak ada `watch` di dalam callback |
-| Ketiga state AsyncValue ditangani | ✅ | loading, error, success (+ empty) |
-| Provider bertipe eksplisit dan tidak duplikat | ✅ | `NotifierProvider` / `AsyncNotifierProvider` |
-| Tidak memakai API Riverpod lama | ✅ | Tanpa `StateProvider`/`StateNotifierProvider` |
-| `flutter analyze` dan `flutter test` lolos | ✅ | Bersih, 6 test lulus |
+- State diubah immutable — `add`/`toggle`/`remove` selalu membuat list baru.
+- `ref.watch` di `build`, `ref.read` di callback — tidak ada `watch` di callback.
+- Semua kondisi AsyncValue ditangani — loading, error, success (+ empty).
+- Provider bertipe eksplisit, tidak duplikat — `NotifierProvider` /
+  `AsyncNotifierProvider`.
+- Tanpa API Riverpod lama — no `StateProvider`/`StateNotifierProvider`.
+- `flutter analyze` dan `flutter test` lolos — bersih, 6 test lulus.
 
 ## Refleksi
 
-1. **Kapan `setState` cukup, kapan harus Riverpod?**
-   `setState` cukup untuk state lokal satu widget saja, misalnya isi
-   `TextField` dialog atau toggle tema. Riverpod dipakai saat state dibagi
-   antar halaman (daftar tugas tampil di tab Tugas, dihitung di tab
-   Statistik) atau harus bertahan saat widget tidak tampil — di sini
-   `StatefulShellRoute` + provider membuat state todo tetap hidup saat
-   berpindah tab.
-2. **`context.go` vs `context.push`?**
-   `go` mengganti stack dan cocok untuk redirect atau perpindahan tab,
-   sedangkan `push` menumpuk halaman di atas stack sehingga tombol back
-   kembali ke halaman sebelumnya. Di `NavigationBar` dipakai `goBranch`
-   (semantik `go`) agar tab tidak menumpuk.
-3. **Bagaimana `AsyncValue` mencegah bug dibanding tiga boolean?**
-   Tiga boolean bisa berada di kombinasi mustahil (loading + error
-   bersamaan). `AsyncValue` satu tipe dengan kondisi saling eksklusif,
-   dan `AsyncValue.guard` mengubah exception menjadi `AsyncError`
-   tanpa `try/catch` tersebar.
-4. **Bagian hasil AI yang diperbaiki?**
-   `Random`/`delay`/`failureRate` di-inject agar test deterministik,
-   auto-retry Riverpod 3 dimatikan (`retry: (...) => null`) agar error
-   bertahan dan retry manual, operasi todo berbasis objek (bukan index)
-   agar benar saat filter aktif, serta provider mengembalikan model
-   `Stats` bukan `List<String>`.
+**Kapan `setState` cukup, kapan Riverpod?**
+`setState` cukup untuk state lokal satu widget (isi dialog, toggle tema).
+Riverpod saya pakai saat state dibagi antar halaman — daftar tugas tampil di
+tab Tugas tapi dihitung di tab Statistik — atau harus hidup saat widgetnya
+tidak tampil.
 
-## Checklist Verifikasi Mandiri
+**`context.go` vs `context.push`?**
+`go` mengganti stack (cocok untuk redirect dan pindah tab), `push` menumpuk
+halaman sehingga tombol back kembali ke sebelumnya. Di `NavigationBar` saya
+pakai `goBranch` (semantik `go`) agar tab tidak menumpuk.
 
-- [x] Navigasi GoRouter bekerja: pindah halaman, back, dan akses path detail
-      langsung.
-- [x] `ProviderScope` membungkus root aplikasi; state ToDo bertahan saat
-      berpindah halaman.
-- [x] UI `AsyncValue` menangani loading, error, dan success, bukan hanya
-      success.
+**Mengapa `AsyncValue` lebih aman dari tiga boolean?**
+Tiga boolean bisa berada di kombinasi mustahil (loading + error bersamaan).
+`AsyncValue` satu tipe dengan kondisi saling eksklusif, dan
+`AsyncValue.guard` mengubah exception menjadi `AsyncError` tanpa `try/catch`
+bertebaran.
+
+**Bagian hasil AI yang saya perbaiki?**
+`Random`/`delay`/`failureRate` di-inject agar test deterministik; auto-retry
+Riverpod 3 dimatikan (`retry: (...) => null`) supaya error bertahan dan
+retry manual; operasi todo berbasis objek (bukan index) agar benar saat
+filter aktif; provider mengembalikan model `Stats`, bukan `List<String>`.
+
+## Checklist saya
+
+- [x] Navigasi bekerja: pindah halaman, back, dan akses path detail langsung.
+- [x] `ProviderScope` di root; state ToDo hidup saat pindah halaman.
+- [x] UI `AsyncValue` menangani loading, error, dan success.
 - [x] `flutter analyze` tanpa issue dan semua test lulus.
-- [x] Hasil AI diverifikasi dan didokumentasikan pada folder `docs/`.
+- [x] Hasil AI terdokumentasi di `docs/`.
