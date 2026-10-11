@@ -62,6 +62,7 @@ app.*.map.json
 02-week-2-declarative-ui-responsive-design/web/
 02-week-2-declarative-ui-responsive-design/screenshots/*.py
 02-week-2-declarative-ui-responsive-design/screenshots/*.png
+02-week-2-declarative-ui-responsive-design/test/*_output.txt
 
 # Week 3: yang di-push hanya README.md tiap folder, test/, docs/, screenshots/*.jpeg
 # (kode runnable week3_navigation/ dan week3_todo/ tetap ada lokal)
