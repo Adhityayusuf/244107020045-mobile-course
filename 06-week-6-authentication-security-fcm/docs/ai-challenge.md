@@ -1,14 +1,14 @@
 # AI Challenge - Week 6
 
-Dokumen ini mencatat prompt, output awal AI, verifikasi, perbaikan manual,
-keputusan final, dan hasil testing untuk bagian **AI Prompt Challenge** pada
-praktikum Authentication, Security & FCM.
+Rekam jejak **AI Prompt Challenge** saya untuk praktikum Authentication,
+Security & FCM: prompt, output awal AI, yang saya cek, yang saya perbaiki
+manual, keputusan akhirnya, dan hasil testing.
 
 Nama: M.Adhitya Yusuf Al-Ayyubi (NIM 244107020045, Kelas TI-2H)
 
 ## 1. Prompt yang digunakan
 
-Prompt diambil persis dari modul:
+Saya pakai prompt modul tanpa diubah:
 
 ```text
 Aplikasi Flutter Campus Notification App.
@@ -24,11 +24,10 @@ Tandai bagian yang BERBEDA untuk Android 13+ vs iOS,
 dan bagian yang tidak boleh mengakses BuildContext.
 ```
 
-AI assistant yang dipakai: coding agent pada environment pengerjaan ini
-(diminta membuat draf sesuai checklist modul, lalu diverifikasi dan
-diperbaiki manual).
+Draf awal saya minta ke coding agent (ngikutin checklist modul), habis itu
+saya verifikasi baris per baris dan perbaiki manual bagian yang meleset.
 
-## 2. Output awal AI
+## 2. Draf awal AI
 
 Draf awal AI sudah mengikuti struktur modul: `TokenStore`
 (`flutter_secure_storage`), `AuthRepository` mock, interceptor Dio dengan
@@ -36,7 +35,7 @@ refresh sekali, `PushService` (permission + token + topic), tiga handler
 (`onMessage`, `onMessageOpenedApp`, `getInitialMessage`), background handler
 top-level, dan guard route GoRouter.
 
-## 3. Verifikasi terhadap AI Verification Checklist
+## 3. Verifikasi saya
 
 | Checklist modul | Temuan pada draf awal | Tindakan |
 | :--- | :--- | :--- |
@@ -47,7 +46,7 @@ top-level, dan guard route GoRouter.
 | Token/secret tidak di-hardcode dan tidak di-log penuh? | **Melanggar sebagian.** Draf awal menampilkan token penuh di halaman Debug | Diperbaiki: `tokenPreview()` (12 karakter + `...`) |
 | Perbedaan Android 13+ vs iOS ditandai? | Belum | Ditambah komentar platform di `FirebasePushService` |
 
-## 4. Perbaikan manual yang dilakukan
+## 4. Perbaikan manual
 
 ### 4.1 Token tidak pernah penuh di UI/log/screenshot
 
@@ -151,7 +150,7 @@ $ flutter test
 00:03 +13: All tests passed!
 ```
 
-## 8. Keputusan teknis
+## 8. Catatan teknis
 
 - UI tidak memanggil secure storage/Firebase langsung; semua lewat repository
   + provider + `PushService`.

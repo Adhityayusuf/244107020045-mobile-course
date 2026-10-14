@@ -1,8 +1,8 @@
 # Minggu 7 — Clean Architecture (Feature-First)
 
-Refactor project **Minggu 5** (`week5_offline_notes`) menjadi struktur
-feature-first Clean Architecture: domain / data / presentation terpisah, dengan
-dependensi hanya mengarah ke dalam.
+Saya refactor project **Minggu 5** (`week5_offline_notes`) jadi struktur
+feature-first Clean Architecture: domain / data / presentation dipisah,
+dengan dependensi yang cuma mengarah ke dalam.
 
 **M.Adhitya Yusuf Al-Ayyubi · NIM 244107020045 · TI-2H**
 
@@ -185,12 +185,12 @@ flutter run -d chrome       # Web (demo deterministik)
 
 ## Hasil verifikasi AI saya
 
-- Interface repository di `domain`, implementasi di `data` — ✅ diterima.
-- Domain bebas Flutter/Dio/SQLite — ✅ **dibuktikan grep**, bukan Reading.
-- Use case per CRUD satu-baris — ❌ saya **tolak** (over-engineering).
-- Entity bebas mapping — ✅ (`toMap/fromMap` hanya di `NoteModel`).
-- Wiring terpusat di provider — ✅ (`notes_providers.dart`).
-- `flutter analyze` + `flutter test` — ✅ bersih, 16 test lulus.
+- Interface repository di `domain`, implementasi di `data`: ✅ diterima.
+- Domain bebas Flutter/Dio/SQLite: ✅ **dibuktikan grep**, bukan Reading.
+- Use case per CRUD satu-baris: ❌ saya **tolak** (over-engineering).
+- Entity bebas mapping: ✅ (`toMap/fromMap` cuma di `NoteModel`).
+- Wiring terpusat di provider: ✅ (`notes_providers.dart`).
+- `flutter analyze` + `flutter test`: ✅ bersih, 16 test lulus.
 
 Detail lengkap: [`docs/ai-challenge.md`](docs/ai-challenge.md).
 

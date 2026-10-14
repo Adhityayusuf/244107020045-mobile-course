@@ -5,9 +5,9 @@ keputusan final untuk PR `fix/01-detail-date-format`.
 
 Nama: M.Adhitya Yusuf Al-Ayyubi (NIM 244107020045, Kelas TI-2H)
 
-## 1. Prompt yang digunakan
+## 1. Prompt review
 
-Prompt diambil persis dari modul:
+Prompt modul (saya pakai mentah-mentah):
 
 ```text
 Review PR Flutter ini sebagai senior Flutter dev.
@@ -21,7 +21,7 @@ Berikan 5 temuan teratas + level (blocker/saran)
 Diff yang direview (28 tambah / 1 hapus): `note_detail_page.dart` memakai
 `formatNoteTime`, 1 widget test regresi, 1 komentar dokumen presisi.
 
-## 2. Output awal AI (5 temuan)
+## 2. Lima temuan AI
 
 | # | Level | Temuan + usulan AI |
 | :---: | :--- | :--- |
@@ -31,7 +31,7 @@ Diff yang direview (28 tambah / 1 hapus): `note_detail_page.dart` memakai
 | 4 | Saran | Terapkan `formatNoteTime` juga di halaman posts/settings agar konsisten di seluruh aplikasi. |
 | 5 | Saran | Pindahkan prefix `'Diperbarui: '` ke file l10n agar siap multi-bahasa. |
 
-## 3. Verifikasi tiap temuan (wajib bukti, bukan Reading)
+## 3. Verifikasi saya
 
 | # | Verifikasi | Hasil |
 | :--- | :--- | :--- |
@@ -55,7 +55,7 @@ Skor: **2 diterima** (1 jadi kode), **2 ditolak dengan bukti**, 1 sebagian.
 Review AI berguna sebagai checklist, tetapi 2 dari 5 temuannya salah/tidak
 berlaku — diterimakan mentah akan menambah kode tanpa nilai.
 
-## 5. Bukti test/analyze sesudah tindak lanjut
+## 5. Bukti sesudah tindak lanjut
 
 ```text
 $ flutter analyze

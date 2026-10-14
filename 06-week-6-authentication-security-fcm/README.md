@@ -1,8 +1,8 @@
 # Minggu 6 — Auth, Keamanan & FCM
 
-**Campus Notification App**: login berpenjaga route, token aman di secure
-storage, Dio yang refresh otomatis, dan notifikasi FCM dengan deep link ke
-`/pengumuman/:id` di ketiga app state.
+Saya bikin **Campus Notification App**: login berpenjaga route, token aman
+di secure storage, Dio yang refresh otomatis, dan notifikasi FCM dengan deep
+link ke `/pengumuman/:id` di ketiga app state.
 
 **M.Adhitya Yusuf Al-Ayyubi · NIM 244107020045 · TI-2H**
 
@@ -176,13 +176,13 @@ key). `Firebase.initializeApp()` sudah dipanggil guarded di `main()`.
 
 ## Hasil verifikasi AI saya
 
-- Background handler top-level + pragma — fungsi top-level, tanpa BuildContext.
-- `onTokenRefresh` ke backend — saya perbaiki dari sekadar log menjadi
+- Background handler top-level + pragma: fungsi top-level, tanpa BuildContext.
+- `onTokenRefresh` ke backend: saya perbaiki dari sekadar log jadi
   `POST /devices` terdokumentasi.
-- Foreground manual — `showForegroundNotification` ada.
-- Klik 3 state ke rute benar — tabel + screenshot 05/06/07.
-- Tanpa hardcode/log token penuh — saya ganti `tokenPreview()` 12 karakter.
-- Beda Android 13+ vs iOS — komentar di `FirebasePushService`.
+- Foreground manual: `showForegroundNotification` ada.
+- Klik 3 state ke rute benar: tabel + screenshot 05/06/07.
+- Tanpa hardcode/log token penuh: saya ganti `tokenPreview()` 12 karakter.
+- Beda Android 13+ vs iOS: komentar di `FirebasePushService`.
 
 ## Checklist saya
 

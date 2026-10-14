@@ -1,14 +1,14 @@
 # AI Challenge - Week 3
 
-Dokumen ini mencatat prompt, output awal AI, verifikasi, perbaikan, dan hasil
-testing untuk bagian **AI Challenge** pada praktikum Navigation & State
-Management.
+Catatan saya buat bagian **AI Challenge** praktikum Navigation & State
+Management: prompt yang saya pakai, output awal AI, yang saya verifikasi,
+yang saya perbaiki, dan hasil testingnya.
 
 Nama: M.Adhitya Yusuf Al-Ayyubi (NIM 244107020045, Kelas TI-2H)
 
-## 1. Prompt yang digunakan
+## 1. Prompt yang saya pakai
 
-Prompt diambil persis dari modul:
+Promptnya saya salin persis dari modul:
 
 ```text
 Buatkan halaman Flutter bernama StatsPage menggunakan flutter_riverpod.
@@ -21,10 +21,11 @@ Requirements:
 Jelaskan setiap bagian kode dalam komentar.
 ```
 
-AI assistant yang dipakai: coding agent pada environment pengerjaan ini
-(diminta menulis kode sesuai checklist modul, lalu diverifikasi).
+Yang bantu saya: coding agent di environment pengerjaan ini. Saya suruh
+dia nulis kode ngikutin checklist modul, terus hasilnya saya verifikasi
+sendiri.
 
-## 2. Output awal AI
+## 2. Jawaban awal AI
 
 AI menghasilkan `StatsNotifier` (`AsyncNotifier<Stats>`) dengan `Random`,
 `delay`, dan `failureRate` sebagai parameter konstruktor, model `Stats`
@@ -36,7 +37,7 @@ empty saat belum ada tugas), serta unit test sukses/gagal di
 (Refactoring: filter), `AsyncValue.guard` untuk refresh, dan operasi todo
 berbasis objek.
 
-## 3. Verifikasi terhadap AI Verification Checklist
+## 3. Hasil verifikasi saya
 
 | Checklist modul | Temuan pada output awal | Tindakan |
 | :--- | :--- | :--- |
@@ -47,7 +48,7 @@ berbasis objek.
 | Tidak memakai API Riverpod lama (`StateProvider`, `StateNotifierProvider`, `Consumer` bertingkat) | Tidak ada API lama | Tidak perlu perbaikan |
 | `flutter analyze` dan `flutter test` lolos | Bersih, 6 test lulus | Dibuktikan di bawah |
 
-## 4. Perbaikan yang dilakukan
+## 4. Yang saya perbaiki
 
 ### 4.1 Random di-inject agar unit test deterministik
 
@@ -92,7 +93,7 @@ ter-update) dan menghitung `total`/`done` dari daftar sebenarnya. Model
 `Stats` memisahkan angka dari presentasi sehingga unit test memeriksa
 angka, bukan string.
 
-## 5. Hasil testing
+## 5. Bukti testing
 
 Perintah dan hasil (dijalankan di dalam `week3_todo/`):
 
@@ -117,7 +118,7 @@ halaman statistik terverifikasi tanpa membangun UI. Widget test membangun
 aplikasi lewat GoRouter dan memastikan alur tambah tugas serta navigasi ke
 Statistik (baris "Total tugas" dan "Belum selesai" tampil).
 
-## 6. Keputusan teknis
+## 6. Yang saya putuskan
 
 - Memakai `AsyncNotifier` + `AsyncValue` (bukan tiga boolean) supaya loading,
   error, dan data tidak bisa berada di kondisi saling bertentangan.

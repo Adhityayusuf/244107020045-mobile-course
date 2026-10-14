@@ -1,7 +1,8 @@
 # Minggu 3 — Navigasi GoRouter & State Riverpod
 
-Menggabungkan navigasi deklaratif (**GoRouter**) dengan state management
-(**Riverpod**), ditutup simulasi data asinkron lewat `AsyncValue`.
+Minggu ini saya menggabungin navigasi deklaratif (**GoRouter**) sama state
+management (**Riverpod**), terus ditutup simulasi data asinkron pakai
+`AsyncValue`.
 
 **M.Adhitya Yusuf Al-Ayyubi · NIM 244107020045 · TI-2H**
 
@@ -60,9 +61,9 @@ memakai `ref.read(...notifier)`.
 **Dialog tambah.**
 ![Dialog tambah](screenshots/todo-add.jpeg)
 
-Yang bisa dilakukan aplikasi: navigasi `/` (daftar tugas), `/produk`, dan
-`/stats` lewat `NavigationBar` tanpa kehilangan state; tambah, tandai
-selesai, dan hapus tugas; filter Semua/Aktif/Selesai dari provider turunan.
+Aplikasinya bisa: navigasi `/` (daftar tugas), `/produk`, dan `/stats`
+lewat `NavigationBar` tanpa kehilangan state; tambah, tandai selesai, dan
+hapus tugas; filter Semua/Aktif/Selesai dari provider turunan.
 
 ## Praktikum 3 — AsyncValue + AI Challenge
 
@@ -120,13 +121,13 @@ Aplikasi membuka tab **Tugas** lebih dulu; tab **Tugas**, **Produk**, dan
 
 ## Hasil verifikasi AI saya
 
-- State diubah immutable — `add`/`toggle`/`remove` selalu membuat list baru.
-- `ref.watch` di `build`, `ref.read` di callback — tidak ada `watch` di callback.
-- Semua kondisi AsyncValue ditangani — loading, error, success (+ empty).
-- Provider bertipe eksplisit, tidak duplikat — `NotifierProvider` /
+- State diubah immutable: `add`/`toggle`/`remove` selalu bikin list baru.
+- `ref.watch` di `build`, `ref.read` di callback: nggak ada `watch` di callback.
+- Semua kondisi AsyncValue ditangani: loading, error, success (+ empty).
+- Provider bertipe eksplisit, nggak duplikat: `NotifierProvider` /
   `AsyncNotifierProvider`.
-- Tanpa API Riverpod lama — no `StateProvider`/`StateNotifierProvider`.
-- `flutter analyze` dan `flutter test` lolos — bersih, 6 test lulus.
+- Tanpa API Riverpod lama: nggak pakai `StateProvider`/`StateNotifierProvider`.
+- `flutter analyze` dan `flutter test` lolos: bersih, 6 test lulus.
 
 ## Refleksi
 

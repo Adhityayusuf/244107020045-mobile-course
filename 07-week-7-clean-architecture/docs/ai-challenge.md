@@ -1,14 +1,14 @@
 # AI Challenge - Week 7
 
-Dokumen ini mencatat prompt, output awal AI, verifikasi, tabel
-usulan-vs-keputusan-final, dan bukti tiga grep sterilitas untuk bagian
-**AI Prompt Challenge** pada praktikum Clean Architecture.
+Catatan **AI Prompt Challenge** saya di praktikum Clean Architecture: prompt
+yang saya kasih, jawaban awal AI, tabel usulan AI lawan keputusan final saya,
+plus bukti tiga grep sterilitas.
 
 Nama: M.Adhitya Yusuf Al-Ayyubi (NIM 244107020045, Kelas TI-2H)
 
-## 1. Prompt yang digunakan
+## 1. Prompt saya
 
-Prompt diambil persis dari modul:
+Prompt di bawah saya ambil persis dari modul:
 
 ```text
 Project Flutter saya: campus_notify (auth + FCM + daftar pengumuman).
@@ -24,10 +24,11 @@ Tugas:
 Jelaskan trade-off setiap keputusan.
 ```
 
-AI assistant yang dipakai: coding agent pada environment pengerjaan ini
-(diminta mengusulkan reorganisasi, lalu saya nilai sendiri dan putuskan).
+Reorganisasi awal saya serahkan ke coding agent, tapi penilaiannya tetap
+di saya: trade-off-nya saya timbang sendiri, struktur final saya yang
+mutusin.
 
-## 2. Output awal AI
+## 2. Usulan awal AI
 
 AI mengusulkan pemecahan lengkap `campus_notify` menjadi
 `features/auth/{domain,data,presentation}` dan
@@ -41,7 +42,7 @@ AI mengusulkan pemecahan lengkap `campus_notify` menjadi
 
 Untuk tiap file lama AI memberi tujuan baru (pindah/pecah/hapus).
 
-## 3. Verifikasi terhadap AI Verification Checklist
+## 3. Cek checklist
 
 | Checklist modul | Temuan pada usulan AI | Tindakan |
 | :--- | :--- | :--- |
@@ -51,7 +52,7 @@ Untuk tiap file lama AI memberi tujuan baru (pindah/pecah/hapus).
 | Wiring terpusat di provider? | Ya | Dipertahankan (`notes_providers.dart`) |
 | Widget tidak `new Repository()`? | Ya | Dibuktikan grep ke-3 nol hasil |
 
-## 4. Perbaikan/penyesuaian yang saya lakukan
+## 4. Penyesuaian saya
 
 ### 4.1 Menolak use case per CRUD satu-baris (over-engineering)
 
@@ -97,7 +98,7 @@ formatting di presentation. Dipindah ke `core/format.dart`
 `implements NoteRepository` (kontrak domain) — pemisahan interface/impl
 justru membuat substitution lebih benar (LSP).
 
-## 5. Tabel usulan AI vs keputusan final
+## 5. Usulan vs keputusan
 
 | Usulan AI | Keputusan saya | Alasan |
 | :--- | :--- | :--- |
@@ -108,7 +109,7 @@ justru membuat substitution lebih benar (LSP).
 | Wiring DI di file provider Riverpod | **Terima** | Tanpa package DI tambahan, sesuai prompt |
 | Tambah `get_it`/injector | **Tolak** | Riverpod sudah cukup untuk DI; dependency tambahan berlebihan |
 
-## 6. Hasil verifikasi (tiga grep + analisis + test)
+## 6. Bukti grep + test
 
 Tiga grep sterilitas (`lib/features/notes/presentation`,
 `lib/features/notes/domain`, `lib/core`) — semuanya **nol hasil**, dibuktikan
@@ -132,7 +133,7 @@ $ flutter test
 
 Screenshot: `screenshots/08-analyze-test.png`.
 
-## 7. Keputusan teknis
+## 7. Catatan akhir
 
 - **Entity** (`Note`) murni Dart; **Model** (`NoteModel`) memegang
   `toMap/fromMap/toEntity`; boundary selalu `.toEntity()`.

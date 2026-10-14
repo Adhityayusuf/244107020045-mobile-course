@@ -1,13 +1,14 @@
 # AI Challenge - Week 4
 
-Dokumen ini mencatat prompt, output awal AI, verifikasi, perbaikan, dan hasil
-testing untuk bagian **AI Challenge** pada praktikum Networking & REST API.
+Di sini saya dokumentasikan **AI Challenge** praktikum Networking & REST API:
+promptnya, jawaban awal AI, hasil verifikasi saya, bagian yang saya betulkan,
+dan hasil testnya.
 
 Nama: M.Adhitya Yusuf Al-Ayyubi (NIM 244107020045, Kelas TI-2H)
 
-## 1. Prompt yang digunakan
+## 1. Prompt
 
-Prompt diambil persis dari modul:
+Ini prompt dari modul, saya pakai apa adanya:
 
 ```text
 Buatkan repository layer Flutter untuk endpoint GET /comments?postId={id}
@@ -22,10 +23,10 @@ Requirements:
 Jelaskan setiap bagian kode dalam komentar.
 ```
 
-AI assistant yang dipakai: coding agent pada environment pengerjaan ini
-(diminta menulis kode sesuai checklist modul, lalu diverifikasi).
+Saya pakai coding agent di environment pengerjaan ini buat nulis kode
+sesuai checklist modul, habis itu saya cek dan benerin manual yang perlu.
 
-## 2. Output awal AI
+## 2. Output mentah AI
 
 AI menghasilkan `Comment` (`fromJson` cast defensif untuk kelima field),
 `CommentRepository.fetchComments(postId)` memakai Dio terpusat (timeout
@@ -34,7 +35,7 @@ AI menghasilkan `Comment` (`fromJson` cast defensif untuk kelima field),
 unit test `Comment.fromJson` dengan field hilang, serta integrasi ke
 halaman detail `/post/:id` (judul + isi + daftar komentar).
 
-## 3. Verifikasi terhadap AI Verification Checklist
+## 3. Cek saya terhadap checklist
 
 | Checklist modul | Temuan pada output awal | Tindakan |
 | :--- | :--- | :--- |
@@ -74,7 +75,7 @@ rute `/post/1` gagal (selalu kembali ke `/`). Perbaikan: `initialRoute()`
 membaca path URL browser (`/simple`, `/post/:id`) bila tidak ada override
 `?route=`.
 
-## 5. Hasil testing
+## 5. Bukti test
 
 Perintah dan hasil (dijalankan di dalam `week4_api/`, tanpa HTTP sungguhan
 di test — semua memakai repository palsu):
@@ -98,7 +99,7 @@ $ flutter test
 00:01 +10: All tests passed!
 ```
 
-## 6. Keputusan teknis
+## 6. Keputusan akhir
 
 - UI tidak pernah memanggil Dio langsung: semua akses data lewat repository
   + provider, sehingga test tidak butuh internet (repository palsu).

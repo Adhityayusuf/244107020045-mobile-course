@@ -1,8 +1,8 @@
 # Minggu 4 — Networking & REST API
 
-Mengambil data dari REST API publik, memetakan JSON ke model Dart yang aman
-null, dan menampilkannya lewat repository + Riverpod — lengkap dengan
-loading, error, empty, success, dan infinite scroll.
+Minggu ini saya ngambil data dari REST API publik, dipetakan ke model Dart
+yang aman null, terus ditampilin lewat repository + Riverpod. Lengkap sama
+loading, error, empty, success, sampai infinite scroll.
 
 **M.Adhitya Yusuf Al-Ayyubi · NIM 244107020045 · TI-2H**
 
@@ -61,9 +61,9 @@ UI (ConsumerWidget) --watch--> Provider (AsyncValue)
 Provider --panggil--> Repository --pakai--> Dio --HTTP--> REST API
 ```
 
-UI tidak pernah memanggil Dio langsung. Repository mengubah exception
-jaringan menjadi kegagalan yang bermakna lewat `friendlyErrorMessage`, lalu
-provider mengekspos `AsyncValue` ke UI.
+UI nggak pernah manggil Dio langsung. Repository yang ngubah exception
+jaringan jadi kegagalan yang bermakna lewat `friendlyErrorMessage`, terus
+provider ngekspos `AsyncValue` ke UI.
 
 **Model aman null.** `Post`/`Comment` memakai cast defensif
 `as String? ?? ''` dan `(as num?)?.toInt() ?? 0` supaya respons yang tidak
@@ -165,12 +165,12 @@ daftar penuh (`/simple`); menekan post membuka detail (`/post/:id`).
 
 ## Hasil verifikasi AI saya
 
-- UI tidak memanggil Dio langsung — UI hanya `ref.watch` provider.
-- `fromJson` aman null — `as String? ?? ''`, `(as num?)?.toInt() ?? 0`.
-- Semua `DioExceptionType` dipetakan — timeout, connectionError, badResponse.
-- `baseUrl`/timeout terpusat — `createDio()` di `api_client.dart`.
-- Test menguji field hilang + edge case — field hilang, 404, sukses/gagal.
-- `flutter analyze` dan `flutter test` lolos — bersih, 10 test lulus.
+- UI nggak manggil Dio langsung: UI cuma `ref.watch` provider.
+- `fromJson` aman null: `as String? ?? ''`, `(as num?)?.toInt() ?? 0`.
+- Semua `DioExceptionType` dipetakan: timeout, connectionError, badResponse.
+- `baseUrl`/timeout terpusat: `createDio()` di `api_client.dart`.
+- Test nguji field hilang + edge case: field hilang, 404, sukses/gagal.
+- `flutter analyze` dan `flutter test` lolos: bersih, 10 test lulus.
 
 ## Checklist saya
 

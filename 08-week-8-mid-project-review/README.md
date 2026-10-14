@@ -1,7 +1,8 @@
 # Minggu 8 — Mid Project Review & Code Review
 
-Review tengah semester atas project Minggu 5-7: GitFlow, issue + PR kecil,
-review AI terverifikasi, tiga mesin hijau, dan CI penolak PR kotor.
+Saya review tengah semester atas project Minggu 5-7: GitFlow, issue + PR
+kecil, review AI yang saya verifikasi sendiri, tiga mesin hijau, dan CI
+penolak PR kotor.
 
 **M.Adhitya Yusuf Al-Ayyubi · NIM 244107020045 · TI-2H**
 

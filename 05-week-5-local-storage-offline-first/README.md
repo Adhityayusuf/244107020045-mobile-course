@@ -1,8 +1,8 @@
 # Minggu 5 — Penyimpanan Lokal & Offline-First
 
-Preferensi di `SharedPreferences`, catatan di SQLite (`sqflite`) lewat
-repository lokal + Riverpod, dengan pola **offline-first**: cache-first
-read, dirty flag, dan antrean sinkronisasi.
+Minggu ini saya nyimpen preferensi di `SharedPreferences`, catatan di SQLite
+(`sqflite`) lewat repository lokal + Riverpod, dengan pola **offline-first**:
+cache-first read, dirty flag, dan antrean sinkronisasi.
 
 **M.Adhitya Yusuf Al-Ayyubi · NIM 244107020045 · TI-2H**
 
@@ -190,13 +190,13 @@ membuka detail (`/note/:id`).
 
 ## Hasil verifikasi AI saya
 
-- Daftar catatan tidak di SharedPreferences — AI pun menyarankan sqflite.
-- Skema mendukung antrean sync — saya tambah kolom `dirty` (AI hanya punya
+- Daftar catatan nggak di SharedPreferences: AI pun nyaranin sqflite.
+- Skema dukung antrean sync: saya tambah kolom `dirty` (AI cuma punya
   `updated_at`).
-- Klaim "real-time" didukung — reaktivitas via Riverpod, bukan asumsi.
-- Boilerplate masuk akal — `flutter pub add sqflite path` ringan.
-- Test field hilang + repository palsu — `note_test.dart` + `FakeNoteRepository`.
-- `flutter analyze` dan `flutter test` lolos — bersih, 7 test lulus.
+- Klaim "real-time" didukung: reaktivitas via Riverpod, bukan asumsi.
+- Boilerplate masuk akal: `flutter pub add sqflite path` ringan.
+- Test field hilang + repository palsu: `note_test.dart` + `FakeNoteRepository`.
+- `flutter analyze` dan `flutter test` lolos: bersih, 7 test lulus.
 
 ## Checklist saya
 

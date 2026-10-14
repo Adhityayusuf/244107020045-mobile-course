@@ -1,14 +1,14 @@
 # AI Challenge - Week 5
 
-Dokumen ini mencatat prompt, output awal AI, verifikasi, perbaikan, keputusan
-final, dan hasil testing untuk bagian **AI Prompt Challenge** pada praktikum
-Local Storage & Offline First.
+File ini berisi perjalanan **AI Prompt Challenge** saya di praktikum Local
+Storage & Offline First: prompt yang dipakai, output mentah AI, verifikasi
+saya, keputusan final, dan bukti testing.
 
 Nama: M.Adhitya Yusuf Al-Ayyubi (NIM 244107020045, Kelas TI-2H)
 
-## 1. Prompt yang digunakan
+## 1. Prompt Challenge
 
-Prompt diambil persis dari modul:
+Prompt modulnya saya kutip persis di bawah:
 
 ```text
 Aplikasi Flutter Offline Notes: CRUD catatan + preferensi tema.
@@ -22,11 +22,11 @@ untuk dua kebutuhan ini. Requirements:
 Jelaskan trade-off setiap pilihan.
 ```
 
-AI assistant yang dipakai: coding agent pada environment pengerjaan ini
-(diminta mengusulkan pilihan storage sesuai checklist modul, lalu
-diverifikasi dan diperbaiki).
+Buat minggu ini saya minta coding agent ngusulin pilihan storage sesuai
+checklist modul. Usulannya nggak langsung saya pakai — saya verifikasi
+dulu, terus saya perbaiki yang kurang.
 
-## 2. Output awal AI
+## 2. Usulan awal AI
 
 ### 2.1 Tabel perbandingan storage (versi awal AI)
 
@@ -64,7 +64,7 @@ Future<List<Note>> fetchNotes() async {
 }
 ```
 
-## 3. Verifikasi terhadap AI Verification Checklist
+## 3. Verifikasi checklist
 
 | Checklist modul | Temuan pada output awal | Tindakan |
 | :--- | :--- | :--- |
@@ -74,7 +74,7 @@ Future<List<Note>> fetchNotes() async {
 | Apakah estimasi boilerplate masuk akal? | Ya. `flutter pub add sqflite path` ringan; Drift butuh `build_runner` + codegen | Dipertahankan |
 | Test menguji field hilang + repository palsu? | AI belum membuat test | Ditambah `test/note_test.dart` + `FakeNoteRepository` |
 
-## 4. Perbaikan yang dilakukan
+## 4. Yang saya ubah
 
 ### 4.1 Dirty flag untuk antrean sinkronisasi
 
@@ -156,7 +156,7 @@ $ flutter test
 00:01 +7: All tests passed!
 ```
 
-## 7. Keputusan teknis
+## 7. Catatan teknis
 
 - UI tidak pernah memanggil SQLite/SharedPreferences langsung; semua lewat
   repository + provider.
