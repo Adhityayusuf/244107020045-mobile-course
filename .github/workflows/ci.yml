@@ -1,0 +1,22 @@
+name: ci
+
+# Menolak PR kotor sebelum dibaca manusia. Root repo ini adalah portofolio
+# (bukan satu package Flutter), jadi yang diperiksa adalah kelengkapan
+# artefak tiap minggu: README, gambar yang dirujuk, dan docs AI.
+# Verifikasi Flutter (analyze/test/format) berjalan di dalam tiap project
+# (week4_api, week5_offline_notes, ...) dan buktinya berupa screenshot
+# di folder masing-masing — lihat Week 8.
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  portfolio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Periksa kelengkapan portofolio
+        run: python .github/scripts/portfolio_check.py

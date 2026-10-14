@@ -5,7 +5,7 @@ Informasi, Politeknik Negeri Malang. Dikerjakan dengan Flutter SDK dan
 bahasa Dart. Tiap folder minggu mandiri: ada kode, test, screenshot bukti,
 dan catatan pengerjaan.
 
-[![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter&logoColor=white)](https://flutter.dev/) [![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?logo=dart&logoColor=white)](https://dart.dev/) [![Progress](https://img.shields.io/badge/progress-minggu_07-blue)](portfolio-summary.md)
+[![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter&logoColor=white)](https://flutter.dev/) [![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?logo=dart&logoColor=white)](https://dart.dev/) [![Progress](https://img.shields.io/badge/progress-minggu_08-blue)](portfolio-summary.md)
 
 ## Profil
 
@@ -25,7 +25,7 @@ dan catatan pengerjaan.
 | 05 | Local Storage & Offline-First | Selesai | [`05-...`](05-week-5-local-storage-offline-first) |
 | 06 | Authentication, Security & FCM | Selesai | [`06-...`](06-week-6-authentication-security-fcm) |
 | 07 | Clean Architecture | Selesai | [`07-...`](07-week-7-clean-architecture) |
-| 08 | Mid Project Review & Code Review | Belum mulai | [`08-...`](08-week-8-mid-project-review) |
+| 08 | Mid Project Review & Code Review | Selesai | [`08-...`](08-week-8-mid-project-review) |
 | 09 | AI-assisted Development / Vibe Coding | Belum mulai | [`09-...`](09-week-9-ai-assisted-development) |
 | 10 | AI Feature Integration | Belum mulai | [`10-...`](10-week-10-ai-feature-integration) |
 | 11 | Performance Optimization | Belum mulai | [`11-...`](11-week-11-performance-optimization) |
@@ -92,6 +92,16 @@ Selengkapnya: [`06-.../README.md`](06-week-6-authentication-security-fcm/README.
 - Tiga grep sterilitas nol hasil, UI identik sebelum/sesudah, 16 test lulus.
 
 Selengkapnya: [`07-.../README.md`](07-week-7-clean-architecture/README.md)
+
+### Minggu 8 — Mid Project Review & Code Review
+
+- GitFlow: branch `develop` + `fix/01-detail-date-format` → merge `--no-ff`.
+- Issue + PR kecil (28+/1-): tanggal detail via `formatNoteTime` + test.
+- Review AI 5 temuan: 2 diterima, 2 ditolak berbasis bukti.
+- Tiga mesin hijau (format/analyze/test, 17 lulus) + CI portofolio.
+- `docs/review-checklist.md` + `docs/ai-review-vs-keputusan.md`.
+
+Selengkapnya: [`08-.../README.md`](08-week-8-mid-project-review/README.md)
 
 ## Menjalankan salah satu project
 

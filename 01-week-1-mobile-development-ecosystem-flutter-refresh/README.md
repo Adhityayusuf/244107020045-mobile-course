@@ -46,6 +46,20 @@ tanpa mengulang dari awal — cepat untuk iterasi UI, state tetap terjaga.
 lebih lambat, dipakai saat perubahan besar memengaruhi state, butuh
 inisialisasi ulang, atau ada error fatal.
 
+## Menjalankan
+
+```bash
+cd my_first_app
+flutter pub get
+flutter run -d chrome
+```
+
+Latihan mandiri (dari dalam `my_first_app/`):
+
+```bash
+dart run lib/latihan_mandiri.dart
+```
+
 ## Kendala setup
 
 - `flutter doctor`: Android licenses belum diterima
