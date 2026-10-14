@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/entities/note.dart';
+import '../../../../core/format.dart';
 import '../providers/notes_providers.dart';
 import '../widgets/note_tile.dart';
 
@@ -64,7 +65,7 @@ class NoteDetailPage extends ConsumerWidget {
                 const SizedBox(height: 12),
               ],
               Text(
-                'Diperbarui: ${note.updatedAt.toLocal()}',
+                'Diperbarui: ${formatNoteTime(note.updatedAt)}',
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ],
