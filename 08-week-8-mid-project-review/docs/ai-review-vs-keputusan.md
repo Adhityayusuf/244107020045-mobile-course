@@ -69,4 +69,4 @@ $ flutter test
 00:01 +17: All tests passed!
 ```
 
-Screenshot: `screenshots/05-machines.png`.
+![Tiga mesin hijau](../screenshots/05-machines.png)
