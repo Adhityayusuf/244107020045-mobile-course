@@ -7,8 +7,6 @@ dependensi hanya mengarah ke dalam.
 **M.Adhitya Yusuf Al-Ayyubi · NIM 244107020045 · TI-2H**
 
 > Codelab ini **merefactor** project sebelumnya, bukan membuat dari nol.
-> Teman sekelas belum punya folder ini, jadi isi saya susun penuh dari
-> jobsheet dengan konvensi minggu-minggu sebelumnya.
 
 ## Tujuan
 

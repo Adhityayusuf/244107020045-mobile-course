@@ -6,9 +6,6 @@ storage, Dio yang refresh otomatis, dan notifikasi FCM dengan deep link ke
 
 **M.Adhitya Yusuf Al-Ayyubi · NIM 244107020045 · TI-2H**
 
-> Folder teman untuk minggu ini masih placeholder, jadi isi saya susun penuh
-> dari jobsheet modul dengan konvensi folder minggu-minggu sebelumnya.
-
 ## Gambaran aplikasi
 
 Login mock (siap diganti Firebase Auth) dengan guard: belum login selalu ke

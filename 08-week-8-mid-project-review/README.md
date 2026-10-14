@@ -6,8 +6,6 @@ review AI terverifikasi, tiga mesin hijau, dan CI penolak PR kotor.
 **M.Adhitya Yusuf Al-Ayyubi · NIM 244107020045 · TI-2H**
 
 > Minggu ini **mereview project yang sudah ada**, bukan membuat dari nol.
-> Teman sekelas belum punya folder ini, jadi isi saya susun penuh dari
-> jobsheet dengan konvensi minggu-minggu sebelumnya.
 
 ## Status paruh semester
 
