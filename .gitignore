@@ -92,3 +92,7 @@ app.*.map.json
 # (project week7_notes_clean/ tetap ada lokal agar analyze/test/build tetap jalan)
 07-week-7-clean-architecture/week7_notes_clean/
 07-week-7-clean-architecture/screenshots/*.py
+
+# Week 8: proses review, tanpa project runnable (hanya README.md, docs/, screenshots/*.png)
+08-week-8-mid-project-review/screenshots/*.py
+08-week-8-mid-project-review/*_output.txt
